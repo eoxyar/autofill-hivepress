@@ -1,4 +1,4 @@
-# autofill-hivepress
+to # autofill-hivepress
 Autofill hivepress attributes from already made forms.
 CREATE a new Add Listing template in HivePress>Templates.
 
@@ -19,7 +19,8 @@ Copy the main script in funtions.php of your theme, and copy the autofill-script
 
 Issue with the select type, when we switch to an earlier selected field of other conditional dropdown group,
 will show the earler selected option not a default option, to force us to make a new selection. Need a click 
-to on another option to activate the trigger. The checkbox and text type fileds works OK.
+to on another option to activate the trigger.Need to improve with code to clear the group or set again to default value of dropdown when load, forceing
+user to make a new click, activating the copy script.
 
 
 
