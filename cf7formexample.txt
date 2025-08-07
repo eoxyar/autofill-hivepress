@@ -1,0 +1,26 @@
+<label for="categoria-principala">Alege Lista Principală</label>
+[select* categoria-principala id:categoria-principala "---" "Lista 1" "Lista 2" "Lista 3 cu Text"]
+
+<!-- Wrapper-ul care conține TOATE grupurile condiționale -->
+<div class="grupuri-conditionale-wrapper">
+
+    [group grupul-pentru-lista-1]
+    <label for="sub-categoria-1">Opțiuni pentru Lista 1</label>
+    [select sub-categoria-1 id:sub-categoria-1 "---" "Opțiune 1 din Lista 1" "Opțiune 2 din Lista 1"]
+    [/group]
+
+    [group grupul-pentru-lista-2]
+    <label for="sub-categoria-2">Opțiuni pentru Lista 2</label>
+    [select sub-categoria-2 id:sub-categoria-2 "---" "Opțiune 1 din Lista 2" "Opțiune 2 din Lista 2"]
+    [/group]
+
+    [group grupul-pentru-lista-3]
+    <label for="text-input-1">Introduceți un text</label>
+    [text text-input-1 id:text-input-1 placeholder "Text aici..."]
+
+    <label for="text-input-2">Introduceți alt text</label>
+    [text text-input-2 id:text-input-2 placeholder "Alt text aici..."]
+    [/group]
+
+</div>
+<!-- Sfârșitul wrapper-ului -->
