@@ -18,7 +18,7 @@ Copy the main script in funtions.php of your theme, and copy the autofill-script
 <img width="1259" height="611" alt="image" src="https://github.com/user-attachments/assets/4ad9acb1-e1ab-4d8b-a9a5-66268752e747" />
 
 Insert the EXAMPLE.JS code snippet in footer to control the form fields. The code reset to default option the conditional dropdown when user change the selection.
-It is an example need to be adapted to your need. The form is in  CF7exampleform.txt
+It is an example need to be adapted to your need. The form is in  CF7formexample.txt
  
 To hide the hivepress fields use hide_hivepress_fields.txt codes in functions.php. You will replace the county_copy and city_copy with your attribute slug.
 
