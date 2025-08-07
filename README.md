@@ -17,8 +17,9 @@ The js will copy the selected value from the form to paired hivepress field.
 Copy the main script in funtions.php of your theme, and copy the autofill-script.js into asstes/js/ folder.
 <img width="1259" height="611" alt="image" src="https://github.com/user-attachments/assets/4ad9acb1-e1ab-4d8b-a9a5-66268752e747" />
 
-Problem with selection type, when we switch to a previously selected field of another conditional dropdown group, the previously selected option is displayed. We have to click on a different option to activate the trigger. Need to improve the code, to clear the group, or set it back to the default value of the dropdown. For activate the copy script MUST click again to desired option. PLEASE test and find WP forms plugins with default value option.
-
+EXAMPLE JS code snippet. Insert in footer to control the form fields. The code reset to default option the conditional dropdown when user change the selection.
+It is an example need to be adapted to your need. 
+ 
 To hide the hivepress fields use hide_hivepress_fields.txt codes in functions.php. You will replace the county_copy and city_copy with your attribute slug.
 
 
