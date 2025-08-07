@@ -19,38 +19,6 @@ Copy the main script in funtions.php of your theme, and copy the autofill-script
 
 Problem with selection type, when we switch to a previously selected field of another conditional dropdown group, the previously selected option is displayed. We have to click on a different option to activate the trigger. Need to improve the code, to clear the group, or set it back to the default value of the dropdown. For activate the copy script MUST click again to desired option. PLEASE test and find WP forms plugins with default value option.
 
-To hide the hivepress fields use this codes in functions.php. You will replace the county_copy and city_copy with your attribute slug.
- Hide the county_copy  and city_copy fields in form.
-///////////////////////////////////////////////////////
-  add_filter(
-    'hivepress/v1/forms/listing_submit',
-    function ($form) {
-       $form['fields']['county_copy'] = [
-        'type' => 'hidden',
-    ];
-
-     $form['fields']['city_copy'] = [
-        'type' => 'hidden',
-    ];
-        return $form;
-    },
-    1000
-);
-
-  add_filter(
-    'hivepress/v1/forms/listing_update',
-    function ($form) {
-       $form['fields']['county_copy'] = [
-        'type' => 'hidden',
-    ];
-
-    $form['fields']['city_copy'] = [
-        'type' => 'hidden',
-    ];
-        return $form;
-    },
-    1000
-);
-
+To hide the hivepress fields use hide_hivepress_fields.txt codes in functions.php. You will replace the county_copy and city_copy with your attribute slug.
 
 
