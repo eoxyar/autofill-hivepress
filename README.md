@@ -22,4 +22,8 @@ It is an example need to be adapted to your need. The form is in  CF7formexample
  
 To hide the hivepress fields use hide_hivepress_fields.txt codes in functions.php. You will replace the county_copy and city_copy with your attribute slug.
 
+Of course you must create in HivePress your attributes, text type, you will pair them with the form fields.
+
+Depending on the purpose, this script is helpful for FORM users, fans, of course with the limitation caused by the type of text attributes.
+
 
