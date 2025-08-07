@@ -21,6 +21,7 @@ Problem with selection type, when we switch to a previously selected field of an
 
 To hide the hivepress fields use this codes in functions.php. You will replace the county_copy and city_copy with your attribute slug.
  Hide the county_copy  and city_copy fields in form
+code:
 add_filter(
     'hivepress/v1/forms/listing_submit',
     function ($form) {
