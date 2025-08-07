@@ -1,4 +1,3 @@
-to # autofill-hivepress
 Autofill hivepress attributes from already made forms.
 CREATE a new Add Listing template in HivePress>Templates.
 
@@ -18,10 +17,7 @@ The js will copy the selected value from the form to paired hivepress field.
 Copy the main script in funtions.php of your theme, and copy the autofill-script.js into asstes/js/ folder.
 <img width="1259" height="611" alt="image" src="https://github.com/user-attachments/assets/4ad9acb1-e1ab-4d8b-a9a5-66268752e747" />
 
-Issue with the select type, when we switch to an earlier selected field of other conditional dropdown group,
-will show the earler selected option not a default option, to force us to make a new selection. Need a click 
-to on another option to activate the trigger. Need to improve with code to clear the group or set again to default value of dropdown when load,
-forcing user to make a new click, activating the copy script or testing and finding wp form with default value option.
+Problem with selection type, when we switch to a previously selected field of another conditional dropdown group, the previously selected option is displayed. We have to click on a different option to activate the trigger. Need to improve the code, to clear the group, or set it back to the default value of the dropdown, that for activate the copy script clicking again to desired option. MUST test and find WP forms plugins with default value option.
 
 
 
