@@ -1,0 +1,31 @@
+// Hide the county_copy  and city_copy fields in form.
+  add_filter(
+    'hivepress/v1/forms/listing_submit',
+    function ($form) {
+       $form['fields']['county_copy'] = [
+        'type' => 'hidden',
+    ];
+
+     $form['fields']['city_copy'] = [
+        'type' => 'hidden',
+    ];
+        return $form;
+    },
+    1000
+);
+
+  add_filter(
+    'hivepress/v1/forms/listing_update',
+    function ($form) {
+       $form['fields']['county_copy'] = [
+        'type' => 'hidden',
+    ];
+
+    $form['fields']['city_copy'] = [
+        'type' => 'hidden',
+    ];
+        return $form;
+    },
+    1000
+);
+
