@@ -16,6 +16,7 @@ and set the ex.CF7 form Field type (radio, select, text, checkbox).
 
 The js will copy the selected value from the form to paired hivepress field. 
 Copy the main script in funtions.php of your theme, and copy the autofill-script.js into asstes/js/ folder.
+<img width="1259" height="611" alt="image" src="https://github.com/user-attachments/assets/4ad9acb1-e1ab-4d8b-a9a5-66268752e747" />
 
 Issue with the select type, when we switch to an earlier selected field of other conditional dropdown group,
 will show the earler selected option not a default option, to force us to make a new selection. Need a click 
