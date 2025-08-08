@@ -16,7 +16,9 @@ and set the ex.CF7 form Field type (select, text, checkbox, (radio not work)). F
 
 The js will copy the selected value from the form to the paired hivepress field. 
 Copy the main script in funtions.php of your theme, and copy the autofill-script.js into asstes/js/ folder.
-<img width="1259" height="611" alt="image" src="https://github.com/user-attachments/assets/4ad9acb1-e1ab-4d8b-a9a5-66268752e747" />
+
+<img width="1259" height="634" alt="image" src="https://github.com/user-attachments/assets/577e72f8-82ef-45da-8569-eca75f5c034b" />
+
 
 Insert the EXAMPLE.JS code snippet in footer to control the form fields. The code reset to default option the conditional dropdown when user change the selection.
 It is an example need to be adapted to your need. The form is in  CF7formexample.txt
