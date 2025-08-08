@@ -8,9 +8,10 @@ Instert your Shortcode and the Add listing Hivepress Form.
 
 This snippet, in wp admin side, will create settings>autofill hivepress tab, where can pair
 Original Fields (ex: your-name) from an ex.CF7 form with HivePress Field (ex: nume), (slug of attribute)
-and set the ex.CF7 form Field type (radio, select, text, checkbox).
+and set the ex.CF7 form Field type (select, text, checkbox, (radio not work)). For Listings and Requests.
 
-<img width="1066" height="611" alt="image" src="https://github.com/user-attachments/assets/8f66cf8f-2bc4-48cd-96bc-88682230dd55" />
+<img width="1264" height="638" alt="image" src="https://github.com/user-attachments/assets/02afefdd-b538-44ee-bd4e-4783da912878" />
+
 
 
 The js will copy the selected value from the form to the paired hivepress field. 
