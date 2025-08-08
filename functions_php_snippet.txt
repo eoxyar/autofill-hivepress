@@ -1,4 +1,5 @@
-// Adaugă pagină de setări în admin
+
+// Creates the admin menu page
 add_action('admin_menu', function () {
     add_options_page(
         'Autofill HivePress',
@@ -9,104 +10,150 @@ add_action('admin_menu', function () {
     );
 });
 
-// Înregistrează setarea
+// Register settings for BOTH Listings and Requests
 add_action('admin_init', function () {
+    // Original setting for Listings
     register_setting('autofill_hivepress_settings', 'autofill_hivepress_field_mappings');
+
+    // NEW: Setting for Requests
+    register_setting('autofill_hivepress_request_settings', 'autofill_hp_request_field_mappings');
 });
 
-function autofill_hivepress_settings_page() {
-    $mappings = get_option('autofill_hivepress_field_mappings', []);
+// The settings page function, now with tabs
+function autofill_hivepress_settings_page()
+{
+    // MODIFIED: Get the active tab, default to 'listings'
+    $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'listings';
+
+    // Get options for both types
+    $listings_mappings = get_option('autofill_hivepress_field_mappings', []);
+    $requests_mappings = get_option('autofill_hp_request_field_mappings', []);
     ?>
     <div class="wrap">
-        <h1>Autofill HivePress</h1>
+        <h1>Autofill HivePress Settings</h1>
+
+        <h2 class="nav-tab-wrapper">
+            <a href="?page=autofill-hivepress&tab=listings" class="nav-tab <?php echo $active_tab == 'listings' ? 'nav-tab-active' : ''; ?>">
+                Listings Autofill
+            </a>
+            <a href="?page=autofill-hivepress&tab=requests" class="nav-tab <?php echo $active_tab == 'requests' ? 'nav-tab-active' : ''; ?>">
+                Requests Autofill
+            </a>
+        </h2>
+
         <form method="post" action="options.php">
-            <?php settings_fields('autofill_hivepress_settings'); ?>
+            <?php
+            // MODIFIED: Show the correct form based on the active tab
+            if ($active_tab == 'listings') {
+                settings_fields('autofill_hivepress_settings');
+                $mappings = $listings_mappings;
+                $option_name = 'autofill_hivepress_field_mappings';
+            } else {
+                settings_fields('autofill_hivepress_request_settings');
+                $mappings = $requests_mappings;
+                $option_name = 'autofill_hp_request_field_mappings';
+            }
+            ?>
+
             <table class="form-table" id="autofill-mapping-table">
                 <tr>
-                    <th>Original Field (ex: your-name)</th>
-                    <th>HivePress Field (ex: nume)</th>
+                    <th>Original Form Field Name</th>
+                    <th>HivePress Field Name</th>
                     <th>Field Type</th>
                     <th></th>
                 </tr>
-                <?php foreach ((array) $mappings as $index => $row): ?>
-                <tr>
-                    <td><input name="autofill_hivepress_field_mappings[<?php echo $index ?>][original]" type="text" value="<?php echo esc_attr($row['original']) ?>"></td>
-                    <td><input name="autofill_hivepress_field_mappings[<?php echo $index ?>][copy]" type="text" value="<?php echo esc_attr($row['copy']) ?>"></td>
-                    <td>
-                        <select name="autofill_hivepress_field_mappings[<?php echo $index ?>][type]">
-                            <option value="text" <?php selected($row['type'], 'text') ?>>Text</option>
-                            <option value="radio" <?php selected($row['type'], 'radio') ?>>Radio</option>
-                            <option value="checkbox" <?php selected($row['type'], 'checkbox') ?>>Checkbox</option>
-                            <option value="select" <?php selected($row['type'], 'select') ?>>Select</option>
-                        </select>
-                    </td>
-                    <td><button class="button remove-row" type="button">X</button></td>
-                </tr>
-                <?php endforeach; ?>
+
+                <?php if (!empty($mappings)) : ?>
+                    <?php foreach ((array) $mappings as $index => $row) : ?>
+                        <tr>
+                            <td><input name="<?php echo $option_name; ?>[<?php echo $index ?>][original]" type="text" value="<?php echo esc_attr($row['original'] ?? '') ?>" class="regular-text"></td>
+                            <td><input name="<?php echo $option_name; ?>[<?php echo $index ?>][copy]" type="text" value="<?php echo esc_attr($row['copy'] ?? '') ?>" class="regular-text"></td>
+                            <td>
+                                <select name="<?php echo $option_name; ?>[<?php echo $index ?>][type]">
+                                    <option value="text" <?php selected($row['type'] ?? '', 'text') ?>>Text</option>
+                                    <option value="radio" <?php selected($row['type'] ?? '', 'radio') ?>>Radio</option>
+                                    <option value="checkbox" <?php selected($row['type'] ?? '', 'checkbox') ?>>Checkbox</option>
+                                    <option value="select" <?php selected($row['type'] ?? '', 'select') ?>>Select</option>
+                                </select>
+                            </td>
+                            <td><button class="button remove-row" type="button">X</button></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </table>
-            <p><button id="add-row" class="button" type="button">Adaugă rând</button></p>
+
+            <p><button id="add-row" class="button" type="button">Add Row</button></p>
             <?php submit_button(); ?>
         </form>
     </div>
 
     <script>
-    document.getElementById('add-row').addEventListener('click', function () {
-        const table = document.getElementById('autofill-mapping-table');
-        const index = table.rows.length - 1;
-        const row = table.insertRow();
-        row.innerHTML = `
-            <td><input name="autofill_hivepress_field_mappings[${index}][original]" type="text"></td>
-            <td><input name="autofill_hivepress_field_mappings[${index}][copy]" type="text"></td>
-            <td>
-                <select name="autofill_hivepress_field_mappings[${index}][type]">
-                    <option value="text">Text</option>
-                    <option value="radio">Radio</option>
-                    <option value="checkbox">Checkbox</option>
-                    <option value="select">Select</option>
-                </select>
-            </td>
-            <td><button class="button remove-row" type="button">X</button></td>
-        `;
-    });
+        document.addEventListener('DOMContentLoaded', function() {
+            const addRowBtn = document.getElementById('add-row');
+            const table = document.getElementById('autofill-mapping-table');
+            const optionName = '<?php echo $option_name; ?>'; // Pass PHP variable to JS
 
-    document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('remove-row')) {
-            e.target.closest('tr').remove();
-        }
-    });
+            addRowBtn.addEventListener('click', function() {
+                // The index should be unique, using timestamp is a safe way
+                const index = new Date().getTime();
+                const row = table.insertRow();
+                row.innerHTML = `
+                    <td><input name="${optionName}[${index}][original]" type="text" class="regular-text"></td>
+                    <td><input name="${optionName}[${index}][copy]" type="text" class="regular-text"></td>
+                    <td>
+                        <select name="${optionName}[${index}][type]">
+                            <option value="text">Text</option>
+                            <option value="radio">Radio</option>
+                            <option value="checkbox">Checkbox</option>
+                            <option value="select">Select</option>
+                        </select>
+                    </td>
+                    <td><button class="button remove-row" type="button">X</button></td>
+                `;
+            });
+
+            // Delegated event listener for remove buttons
+            table.addEventListener('click', function(e) {
+                if (e.target && e.target.classList.contains('remove-row')) {
+                    e.target.closest('tr').remove();
+                }
+            });
+        });
     </script>
     <?php
 }
 
 
-
-// Încarcă script-ul pe frontend și trimite datele din setări
+// MODIFIED: Enqueue script and pass BOTH sets of mappings
 add_action('wp_enqueue_scripts', function () {
-    // 1. Preluăm mapările salvate în pagina de setări
-    $mappings = get_option('autofill_hivepress_field_mappings', []);
+    // 1. Get mappings for both Listings and Requests
+    $listings_mappings = get_option('autofill_hivepress_field_mappings', []);
+    $requests_mappings = get_option('autofill_hp_request_field_mappings', []);
 
-    // 2. Oprim procesul dacă nu există nicio mapare definită
-    if (empty($mappings)) {
+    // 2. Merge them into a single array. Use array_values to reset keys.
+    $all_mappings = array_merge(array_values($listings_mappings), array_values($requests_mappings));
+
+    // 3. Stop if no mappings are defined at all
+    if (empty($all_mappings)) {
         return;
     }
 
-    // 3. Înregistrăm și încărcăm fișierul nostru JavaScript
-    //    Asigură-te că calea este corectă! Aici presupun că se află în /assets/js/
+    // 4. Enqueue the script (path might need to be adjusted)
     wp_enqueue_script(
         'autofill-hivepress-script',
-        get_template_directory_uri() . '/assets/js/autofill-script.js', // Schimbă calea dacă e necesar
+        get_template_directory_uri() . '/assets/js/autofill-script.js', // Adjust path if needed
         ['jquery'],
-        '1.0',
+        '1.1', // Incremented version
         true
     );
 
-    // 4. Trimitem datele (mapările) către scriptul nostru folosind wp_localize_script
-    //    Acesta va crea un obiect JavaScript numit `autofill_data`
+    // 5. Send the combined mappings to our script
     wp_localize_script(
         'autofill-hivepress-script',
         'autofill_data',
         [
-            'mappings' => array_values($mappings) // Trimitem mapările ca un array curat
+            'mappings' => $all_mappings
         ]
     );
 });
+
