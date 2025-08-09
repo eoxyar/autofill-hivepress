@@ -20,7 +20,9 @@ Copy the main script in funtions.php of your theme, and copy the autofill-script
 <img width="1259" height="634" alt="image" src="https://github.com/user-attachments/assets/577e72f8-82ef-45da-8569-eca75f5c034b" />
 
 
-Insert the EXAMPLE.JS code snippet in footer to control the form fields. The code reset to default option the conditional dropdown when user change the selection.
+Insert the EXAMPLE.JS code snippet in footer to control the form fields. The code reset to default option the conditional dropdown when user change the selection, 
+for that  must setup an empty default option in select type. In this way we ensure that the copying process of the new selection will happen.
+
 It is an example need to be adapted to your need. The form is in  CF7formexample.txt
  
 To hide the hivepress fields use hide_hivepress_fields.txt codes in functions.php. You will replace the example attributes with your attributes.
