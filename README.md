@@ -23,8 +23,10 @@ Copy the main script in funtions.php of your theme, and copy the autofill-script
 <img width="1259" height="634" alt="image" src="https://github.com/user-attachments/assets/577e72f8-82ef-45da-8569-eca75f5c034b" />
 
 
-Insert the EXAMPLE.JS code snippet in footer to control the form fields. The code reset to default option the conditional dropdown when user change the selection, 
-for that  must setup an empty default option in select type. In this way we ensure that the copying process of the new selection will happen.
+Insert the EXAMPLE.JS code snippet in footer to control the form fields. The code reset to default option the conditional dropdowns inside the WRAPPER, when user change the selection, for that  must setup an empty default option in select type. In this way we ensure that the copying process of the new selection will happen.
+
+<img width="955" height="600" alt="image" src="https://github.com/user-attachments/assets/e1d4699b-4ef1-4098-a091-14955aa89215" />
+
 
 It is an example need to be adapted to your need. The form is in  CF7formexample.txt
  
