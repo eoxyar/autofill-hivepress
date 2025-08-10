@@ -12,6 +12,9 @@ and set the ex.CF7 form Field type (select, text, checkbox, (radio not work)). F
 
 <img width="1264" height="638" alt="image" src="https://github.com/user-attachments/assets/02afefdd-b538-44ee-bd4e-4783da912878" />
 
+Use console to get the type and name
+
+![salect_name](https://github.com/user-attachments/assets/6028f7b5-430b-49ad-9d61-e0d0562a0946)
 
 
 The js will copy the selected value from the form to the paired hivepress field. 
